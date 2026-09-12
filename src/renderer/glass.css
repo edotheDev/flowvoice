@@ -1,0 +1,76 @@
+/*
+ * Shared surface tokens, light, monochrome.
+ *
+ * No hue anywhere: state is carried by weight and darkness, never by colour, which
+ * also means the pill never clashes with whatever is behind it.
+ *
+ * There is no OS backdrop blur (DWM paints it to the window rectangle and ignores
+ * SetWindowRgn, so it forces square corners). These surfaces are near-opaque CSS
+ * instead, which keeps the corners genuinely round and the text readable over
+ * anything.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+:root {
+  /* Ink on a light surface. */
+  --ink: rgba(18, 19, 22, 0.92);
+  --ink-2: rgba(18, 19, 22, 0.54);
+  --ink-3: rgba(18, 19, 22, 0.32);
+  --ink-4: rgba(18, 19, 22, 0.16);
+
+  --surface: rgba(252, 252, 253, 0.97);
+  --surface-quiet: rgba(250, 250, 251, 0.9);
+  --edge: rgba(18, 19, 22, 0.1);
+  --edge-soft: rgba(18, 19, 22, 0.06);
+
+  /* The only "state" scale, and it is greyscale by design. */
+  --level-low: rgba(18, 19, 22, 0.42);
+  --level-mid: rgba(18, 19, 22, 0.66);
+  --level-high: rgba(18, 19, 22, 0.9);
+
+  --shadow:
+    0 10px 30px rgba(18, 19, 22, 0.13),
+    0 2px 6px rgba(18, 19, 22, 0.09),
+    0 0 0 0.5px rgba(18, 19, 22, 0.05);
+
+  --radius: 14px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.012em;
+}
+
+.dim {
+  color: var(--ink-2);
+}
+.faint {
+  color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

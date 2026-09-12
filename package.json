@@ -1,0 +1,18 @@
+{
+  "name": "flowvoice",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tap a key, talk, and your words land wherever your cursor is. Free voice dictation for Windows that learns your accent.",
+  "main": "src/main/main.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^40.0.0"
+  },
+  "dependencies": {
+    "koffi": "^2.12.0"
+  }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; media-src 'self' blob:;" />
+    <link rel="stylesheet" href="../glass.css" />
+    <link rel="stylesheet" href="./pill.css" />
+  </head>
+  <body>
+    <!-- The window is much larger than the pill so the pill can grow without ever
+         resizing the window. `stage` is the only thing that paints. -->
+    <div class="stage" id="stage" data-state="idle">
+      <div class="pill" id="pill">
+        <!-- left slot: the control. A dot at rest, a square while recording. -->
+        <button class="ctrl" id="ctrl" aria-label="record">
+          <span class="glyph"></span>
+        </button>
+
+        <div class="body">
+          <!-- The shortcut alone. The dot already says what this does. -->
+          <div class="hint" id="hint"><b id="keyhint">Ctrl+Shift+Space</b></div>
+          <canvas class="wave" id="wave" width="640" height="26"></canvas>
+          <div class="working"><span></span></div>
+          <div class="review"><div class="text" id="text"></div></div>
+        </div>
+
+        <div class="meta">
+          <!-- Only ever reads MEMO. Dictation is the default and says nothing. -->
+          <span class="mode" id="mode"></span>
+          <span class="timer num" id="timer">0:00</span>
+          <button class="kill" id="kill" aria-label="discard">
+            <svg viewBox="0 0 10 10" width="9" height="9" aria-hidden="true">
+              <path d="M1 1 L9 9 M9 1 L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

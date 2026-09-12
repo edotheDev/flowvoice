@@ -1,0 +1,15 @@
+node_modules/
+
+# Your settings and API key live in %APPDATA%\flowvoice\config.json, never here.
+# These catch a copy that was dropped into the folder by hand.
+config.json
+lexicon.json
+.env
+.env.*
+
+# Anything recorded or logged, if a dir setting ever points inside the repo
+memos/
+corpus/
+*.webm
+*.log
+.preview/
