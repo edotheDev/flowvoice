@@ -2,6 +2,10 @@
 
 Tap a key, talk, tap it again. Your words land wherever your cursor is: a terminal, Claude Code, a chat box, an email.
 
+![FlowVoice in use: tap the key, talk, and the sentence lands in the terminal with "cloud fair" repaired to "Cloudflare"](docs/demo.gif)
+
+<sub>The sentence in the demo was written for the demo. The waveform is real measured loudness; no real dictation is shown.</sub>
+
 It runs on Groq's free tier, so one person dictating all day costs nothing. It also learns the words your accent gets wrong, so the same mistake doesn't come back.
 
 Windows only for now.
@@ -12,9 +16,16 @@ Speech to text is great until you have an accent. Whisper kept writing "Claw" wh
 
 ## How it works
 
+```mermaid
+flowchart LR
+  A[🎙️ your voice] --> B[whisper-large-v3<br/>hears it]
+  B --> C[your known fixes<br/>from lexicon.json]
+  C --> D[gpt-oss-120b<br/>repairs mishearings]
+  D --> E[📋 pasted at<br/>your cursor]
+  D -. learns what it can trust .-> C
 ```
-mic -> whisper-large-v3 -> your known fixes -> gpt-oss-120b repair -> pasted at your cursor
-```
+
+![The pill's four states: resting as a thin line, showing the hotkey on hover, a live waveform and timer while recording, and a progress line while the transcript is fixed](docs/pill-states.png)
 
 - **Hearing:** `whisper-large-v3` on Groq, not the turbo model. Turbo is faster and noticeably worse on accents.
 - **Known fixes:** mishearings you've had before are swapped in code, before any model sees the text. Putting them in the prompt made the model over-apply them.
