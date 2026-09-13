@@ -138,7 +138,11 @@ class Config {
     } catch (err) {
       if (err && err.code !== 'ENOENT') {
         // Never overwrite a file we failed to parse: it probably holds a key.
-        console.error(`[config] could not read ${this.file}: ${err.message}. Using defaults for this run.`)
+        // And never print err.message: V8 quotes the broken JSON in it, so a key pasted
+        // without quotes would land in the terminal. Say where, not what.
+        const where = /line \d+ column \d+/.exec(String(err.message))
+        const why = err.code || `not valid JSON${where ? ` (${where[0]})` : ''}`
+        console.error(`[config] could not read ${this.file}: ${why}. Using defaults for this run.`)
         this.data = DEFAULTS
         return this.data
       }
