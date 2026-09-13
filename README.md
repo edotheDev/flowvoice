@@ -89,7 +89,7 @@ What it has learned about your voice is in `%APPDATA%\flowvoice\lexicon.json`, s
 
 ## Status
 
-This is the voice half of a tool I use every day. Before FlowVoice it was called Glass Desk, and [its page is here](https://dotsstudio.io/lab/glass-desk). It runs from source; there's no installer yet. Issues and pull requests are welcome.
+This is the voice half of a tool I use every day. Before FlowVoice it was called Glass Desk, and [its page is here](https://dotsstudio.io/lab/flowvoice/). It runs from source; there's no installer yet. Issues and pull requests are welcome.
 
 ## License
 
